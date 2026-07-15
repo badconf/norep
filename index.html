@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!--
+  METCON Generator
+  Copyright (C) 2026 Stéphane
+
+  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+  1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+  3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+  SPDX short identifier: BSD-3-Clause
+  Full license text: https://opensource.org/license/bsd-3-clause
+-->
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Générateur METCON — Séances AMRAP, EMOM, For Time gratuites</title>
+<meta name="description" content="Générateur gratuit de séances de cross training (AMRAP, EMOM, For Time). Logiciel libre sous licence GPL v3, sans compte, sans traçage.">
+<link rel="icon" type="image/x-icon" href="favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="canonical" href="https://norep.org/index.html">
+<link rel="stylesheet" href="style.css">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Générateur METCON — Séances AMRAP, EMOM, For Time gratuites">
+<meta property="og:description" content="Générateur gratuit de séances de cross training (AMRAP, EMOM, For Time). Logiciel libre sous licence GPL v3, sans compte, sans traçage.">
+<meta property="og:url" content="https://norep.org/index.html">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Schema.org : WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Générateur METCON",
+  "url": "https://norep.org/index.html",
+  "description": "Générateur gratuit de séances de cross training au format AMRAP, EMOM ou For Time, avec choix de la durée, du nombre de mouvements et de l'équipement disponible.",
+  "applicationCategory": "SportsApplication",
+  "operatingSystem": "Tous (application web dans le navigateur)",
+  "browserRequirements": "Nécessite JavaScript",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "inLanguage": "fr-FR"
+}
+</script>
+
+<!-- Schema.org : FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À quoi sert le générateur METCON ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il crée en un clic une séance de cross training complète, au format AMRAP, EMOM ou For Time, en tirant aléatoirement des mouvements adaptés à la durée et à l'équipement que vous avez sélectionnés."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "À qui s'adresse cette application ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "À toute personne pratiquant le cross training ou l'entraînement fonctionnel à haute intensité : pratiquants autonomes qui manquent d'inspiration pour varier leurs séances, coachs qui veulent gagner du temps sur la préparation d'un WOD, ou simples curieux qui veulent découvrir ce type d'entraînement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il créer un compte pour utiliser le générateur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. L'application s'utilise directement, sans inscription ni compte à créer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mes données ou mes séances générées sont-elles conservées ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aucune trace n'est conservée. Tout le calcul se fait localement dans votre navigateur, aucune séance générée, aucune donnée de configuration et aucune information de navigation n'est envoyée ou stockée sur un serveur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le générateur METCON est-il un logiciel libre ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Le code source est publié sous licence GNU GPL v3, ce qui permet de le consulter, le modifier et le redistribuer librement dans les mêmes conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cette application est-elle affiliée à une marque de sport en particulier ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, le générateur METCON est un outil indépendant, sans affiliation ni partenariat avec une marque ou une fédération sportive. Le terme WOD (Workout Of the Day) désigne simplement une séance du jour, de façon générique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels formats de séances peut-on générer ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trois formats classiques du cross training : AMRAP (le plus de tours possible dans un temps donné), EMOM (un ou plusieurs mouvements à exécuter chaque minute) et For Time (un enchaînement à réaliser le plus vite possible, avec un temps limite)."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div id="app">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-eyebrow">WOD Builder</div>
+    <h1>
+      <span class="h1-main">GENERATEUR</span>
+      <span class="h1-accent">METCON</span>
+    </h1>
+    <p class="header-sub">Paramètre. Génère. Souffre.</p>
+  </header>
+
+  <!-- CONFIG ZONE -->
+  <div id="config">
+
+    <!-- Format -->
+    <div class="section">
+      <div class="section-label">Format</div>
+      <div class="toggle-group" id="format-group">
+        <button class="toggle-btn" data-val="AMRAP">AMRAP</button>
+        <button class="toggle-btn" data-val="FOR_TIME">For Time</button>
+        <button class="toggle-btn" data-val="EMOM">EMOM</button>
+      </div>
+    </div>
+
+    <!-- Duration -->
+    <div class="section">
+      <div class="section-label">Durée (min)</div>
+      <div class="slider-row">
+        <label for="s-duration">Temps</label>
+        <input type="range" id="s-duration" min="4" max="40" step="1" value="12">
+        <span class="slider-val" id="v-duration">12 min</span>
+      </div>
+    </div>
+
+    <!-- Movements count -->
+    <div class="section">
+      <div class="section-label">Mouvements</div>
+      <div class="slider-row">
+        <label for="s-count">Nombre</label>
+        <input type="range" id="s-count" min="2" max="6" step="1" value="3">
+        <span class="slider-val" id="v-count">3</span>
+      </div>
+    </div>
+
+    <!-- Advanced options -->
+    <div class="section">
+      <button class="options-toggle" id="options-toggle">
+        <span>Options</span>
+        <span class="arrow">▶</span>
+      </button>
+      <div class="options-panel" id="options-panel">
+
+        <!-- Mix categories -->
+        <div class="opt-row">
+          <span class="opt-label">Mixer catégories (équilibré)</span>
+          <label class="switch">
+            <input type="checkbox" id="opt-mix" checked>
+            <span class="switch-track"></span>
+          </label>
+        </div>
+
+        <div class="sep"></div>
+
+        <!-- EMOM style (conditional) -->
+        <div class="cond-panel" id="cond-emom">
+          <div class="opt-row">
+            <span class="opt-label">EMOM style</span>
+            <div class="mini-toggle" id="emom-style-group">
+              <button class="mini-btn active" data-val="single">Single</button>
+              <button class="mini-btn" data-val="multi">Multi</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOR TIME variant (conditional) -->
+        <div class="cond-panel" id="cond-fortime">
+          <div class="opt-row">
+            <span class="opt-label">For time variant</span>
+            <div class="mini-toggle" id="fortime-variant-group">
+              <button class="mini-btn active" data-val="rounds">Rounds</button>
+              <button class="mini-btn" data-val="descending">Descending</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+
+        <!-- Equipment -->
+        <div>
+          <div class="opt-label" style="margin-bottom:8px;">Équipement</div>
+          <div class="equip-actions">
+            <button class="link-btn" id="btn-all">Tous</button>
+            <button class="link-btn" id="btn-none">Aucun</button>
+            <button class="link-btn" id="btn-basic">Poids du corps</button>
+          </div>
+          <div class="equipment-grid" id="equip-grid"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div id="actions">
+    <button class="btn-generate" id="btn-generate">GÉNÉRER</button>
+    <button class="btn-regen" id="btn-regen" title="Re-generate">↻</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result">
+    <div class="result-empty">
+      <span class="empty-icon">⚡</span>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="faq-title">À propos de ce générateur</h2>
+
+    <details class="faq-item">
+      <summary>À quoi sert le générateur METCON ?</summary>
+      <p>Il crée en un clic une séance de cross training complète, au format <strong>AMRAP</strong>, <strong>EMOM</strong> ou <strong>For Time</strong>, en tirant aléatoirement des mouvements adaptés à la durée et à l'équipement que vous avez sélectionnés. Fini la page blanche avant l'entraînement.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>À qui s'adresse cette application ?</summary>
+      <p>À toute personne pratiquant le cross training ou l'entraînement fonctionnel à haute intensité : pratiquants autonomes qui manquent d'inspiration pour varier leurs séances, coachs qui veulent gagner du temps sur la préparation d'un WOD, ou curieux qui veulent simplement découvrir ce type d'entraînement.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Faut-il créer un compte pour l'utiliser ?</summary>
+      <p>Non. L'application s'utilise directement, sans inscription ni compte à créer.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Mes données ou mes séances générées sont-elles conservées ?</summary>
+      <p>Aucune trace n'est conservée. Tout le calcul se fait localement dans votre navigateur : aucune séance générée, aucune donnée de configuration et aucune information de navigation n'est envoyée ou stockée sur un serveur. Seule la visite de la page est mesurée de façon anonyme, via un outil de statistiques respectueux de la vie privée (Matomo), conforme aux recommandations de la CNIL et sans dépôt de cookie ni collecte de donnée personnelle.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Le générateur METCON est-il un logiciel libre ?</summary>
+      <p>Oui. Le code source est publié sous licence <a href="https://opensource.org/license/bsd-3-clause" target="_blank" rel="license noopener">BSD-3-Clause</a>, ce qui permet de le consulter, le modifier et le redistribuer librement dans les conditions indiquées dans le texte de la licence.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Cette application est-elle affiliée à une marque de sport en particulier ?</summary>
+      <p>Non, le générateur METCON est un outil indépendant, sans affiliation ni partenariat avec une marque ou une fédération sportive. Le terme WOD (<em>Workout Of the Day</em>) désigne simplement une séance du jour, de façon générique.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Quels formats de séances peut-on générer ?</summary>
+      <p>Trois formats classiques du cross training : <strong>AMRAP</strong> (le plus de tours possible dans un temps donné), <strong>EMOM</strong> (un ou plusieurs mouvements à exécuter chaque minute) et <strong>For Time</strong> (un enchaînement à réaliser le plus vite possible, avec un temps limite).</p>
+    </details>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <span>Générateur METCON</span>
+    <span class="footer-sep">·</span>
+    <span><a href="https://opensource.org/license/bsd-3-clause" target="_blank" rel="license noopener">BSD-3-Clause</a></span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
